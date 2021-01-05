@@ -1,0 +1,65 @@
+{
+	"name": "@graphix/merge",
+	"version": "0.0.0",
+	"description": "Merge javascript objects (`{}`) DEEPLY (recursively). It also checks the equality of input objects.",
+	"keywords": [
+		"javascript",
+		"js",
+		"object",
+		"objects",
+		"{}",
+		"[object Object]",
+		"clone",
+		"merge",
+		"clone-and-compare",
+		"merge-and-compare",
+		"clone-with-equality-check",
+		"merge-with-equality-check",
+		"deep-clone",
+		"deep-merge",
+		"deep-clone-and-compare",
+		"deep-merge-and-compare",
+		"deep-clone-objects",
+		"deep-merge-objects",
+		"deep-clone-and-compare-objects",
+		"deep-merge-and-compare-objects",
+		"recursive-clone",
+		"recursive-merge",
+		"recursive-clone-and-compare",
+		"recursive-merge-and-compare",
+		"recursive-clone-objects",
+		"recursive-merge-objects",
+		"recursive-clone-and-compare-objects",
+		"recursive-merge-and-compare-objects"
+	],
+	"homepage": "https://github.com/Rahazad/merge.js#readme",
+	"bugs": {
+		"url": "https://github.com/Rahazad/merge.js/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Rahazad/merge.js.git"
+	},
+	"license": "MIT",
+	"author": "S. M. Mir-Ismaili <s.m.mirismaili@gmail.com>",
+	"type": "module",
+	"main": "dist/index.js",
+	"module": "dist/index.modern.js",
+	"source": "src/index.js",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "microbundle-crl --no-compress --format modern,cjs",
+		"prepare": "run-s build",
+		"start": "microbundle-crl watch --no-compress --format modern,cjs"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"microbundle-crl": "^0.13.11",
+		"npm-run-all": "^4.1.5"
+	},
+	"engines": {
+		"node": ">=10"
+	}
+}
