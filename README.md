@@ -1,6 +1,6 @@
 # Merge
 
-> **Merge javascript objects (`{}`) DEEPLY (recursively). It also checks the equality of input objects.**
+> **Merge javascript objects like `Object.assign()` but DEEPLY (recursively). It also checks the equality of input objects.**
 
 [![npm (scoped)](https://img.shields.io/npm/v/@graphix/merge.svg)](https://npmjs.com/package/@graphix/merge)
 [![install size](https://packagephobia.now.sh/badge?p=@graphix/merge)](https://packagephobia.now.sh/result?p=@graphix/merge)
