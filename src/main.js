@@ -1,17 +1,21 @@
+import util from 'util'
+
 /**
  * Created on 1399/9/19 (2020/12/9).
  * @author {@link https://mirismaili.github.io S. Mahdi Mir-Ismaili}
  */
 
 export const merge = (destObject, ...srcObjects) => {
-	if (!isObject(destObject))
-		throw new Error('`destObject` should be an Object!\n' + {destObject})
+	if (!isObject(destObject)) {
+		throw Error('`destObject` should be an Object!\n' + util.inspect({destObject}))
+	}
 
 	let equality = true
 
 	for (const [i, srcObj] of srcObjects.entries()) {
-		if (!isObject(srcObj))
-			throw new Error('Each of `srcObjects` should be an Object!\n' + {i, srcObj})
+		if (!isObject(srcObj)) {
+			throw Error('Each `srcObj` of `srcObjects` should be an Object!\n' + util.inspect({i, srcObj}))
+		}
 
 		mergeR(destObject, srcObj)
 	}
