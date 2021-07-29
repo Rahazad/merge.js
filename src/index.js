@@ -44,6 +44,9 @@ export const merge = (destObject, ...srcObjects) => {
 }
 
 // noinspection JSUnusedGlobalSymbols
+export const deepClone = obj => merge({}, obj).destObject
+
+// noinspection JSUnusedGlobalSymbols
 export default merge
 
 //*****************************************************************************************/
