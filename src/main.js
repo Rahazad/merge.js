@@ -9,19 +9,19 @@ export const merge = (destObject, ...srcObjects) => {
 	if (!isObject(destObject)) {
 		throw Error('`destObject` should be an Object!\n' + util.inspect({destObject}))
 	}
-
+	
 	let equality = true
-
+	
 	for (const [i, srcObj] of srcObjects.entries()) {
 		if (!isObject(srcObj)) {
 			throw Error('Each `srcObj` of `srcObjects` should be an Object!\n' + util.inspect({i, srcObj}))
 		}
-
+		
 		mergeR(destObject, srcObj)
 	}
-
+	
 	return {destObject, equality}
-
+	
 	function mergeR(dstObj, srcObj) {
 		for (const [k, subSrcObj] of Object.entries(srcObj)) {
 			if (isObject(subSrcObj)) {
@@ -41,7 +41,7 @@ export const merge = (destObject, ...srcObjects) => {
 				}
 				continue
 			}
-
+			
 			mergeR(dstObj[k], subSrcObj)
 		}
 	}
