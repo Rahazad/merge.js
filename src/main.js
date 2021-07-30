@@ -5,51 +5,59 @@ import util from 'util'
  * @author {@link https://mirismaili.github.io S. Mahdi Mir-Ismaili}
  */
 
-export const merge = (destObject, ...srcObjects) => {
-	if (!isObject(destObject)) {
-		throw Error('`destObject` should be an Object!\n' + util.inspect({destObject}))
-	}
+export const merge = (dstObjArr, ...srcObjectsOrArrays) => {
+	const oType = Object.prototype.toString.call(dstObjArr)
+	
+	if (!['[object Object]', '[object Array]'].includes(oType))
+		throw Error('`dstObjArr` should be an Object or an Array!\n' + util.inspect({dstObjArr}))
 	
 	let equality = true
 	
-	for (const [i, srcObj] of srcObjects.entries()) {
-		if (!isObject(srcObj)) {
-			throw Error('Each `srcObj` of `srcObjects` should be an Object!\n' + util.inspect({i, srcObj}))
-		}
-		
-		mergeR(destObject, srcObj)
-	}
+	for (const [i, srcObjArr] of srcObjectsOrArrays.entries()) // First, check type-validation ...
+		if (!Object.prototype.toString.call(srcObjArr))
+			throw Error(
+				`All \`srcObjectsOrArrays\` should have similar oType to \`dstObjArr\` (${oType})!\n` +
+				util.inspect({i, 'srcObjArr oType': Object.prototype.toString.call(srcObjArr), srcObjArr}),
+			)
 	
-	return {destObject, equality}
+	for (const srcObjArr of srcObjectsOrArrays) // ... then start the work:
+		mergeR(dstObjArr, srcObjArr)
 	
-	function mergeR(dstObj, srcObj) {
-		for (const [k, subSrcObj] of Object.entries(srcObj)) {
+	return {result: dstObjArr, equality}
+	
+	function mergeR(dstObjArr, srcObjArr) {
+		for (const [k, subSrcObj] of Object.entries(srcObjArr)) {
 			if (isObject(subSrcObj)) {
-				if (!isObject(dstObj[k])) {
+				if (!isObject(dstObjArr[k])) {
 					equality = false
-					dstObj[k] = {}
+					dstObjArr[k] = {}
 				}
 			} else if (subSrcObj instanceof Array) {
-				if (!(dstObj[k] instanceof Array)) {
+				if (!(dstObjArr[k] instanceof Array)) {
 					equality = false
-					dstObj[k] = []
+					dstObjArr[k] = []
 				}
 			} else {
-				if (!Object.is(dstObj[k], subSrcObj)) {
+				if (!Object.is(dstObjArr[k], subSrcObj)) {
 					equality = false
-					dstObj[k] = subSrcObj
+					dstObjArr[k] = subSrcObj
 				}
 				continue
 			}
 			
-			mergeR(dstObj[k], subSrcObj)
+			mergeR(dstObjArr[k], subSrcObj)
 		}
 	}
 }
 
-export const deepClone = obj => merge({}, obj).destObject
+export function deepClone(objArr) {
+	if (!['[object Object]', '[object Array]'].includes(Object.prototype.toString.call(objArr)))
+		throw Error('`objArr` should be an Object or an Array!\n' + util.inspect({objArr}))
+	
+	return merge(objArr instanceof Array ? [] : {}, objArr).result
+}
 
 export default merge
 
 //*****************************************************************************************/
-const isObject = variable => Object.prototype.toString.call(variable) === '[object Object]'
+const isObject = (variable) => Object.prototype.toString.call(variable) === '[object Object]'

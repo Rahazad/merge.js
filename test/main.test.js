@@ -25,7 +25,7 @@ const o3 = {
 	},
 }
 
-const result = merge(o1, o2, o3)
+const output = merge(o1, o2, o3)
 
 const o4 = {
 	a: 1,
@@ -35,8 +35,10 @@ const o4 = {
 	},
 }
 
-assert.deepStrictEqual(result.destObject, o4)
+assert.deepStrictEqual(output.result, o4)
 
-assert.strictEqual(result.equality, false)
+assert.strictEqual(output.equality, false)
 
-assert.deepStrictEqual(deepClone(result.destObject), o4)
+assert.deepStrictEqual(deepClone(output.result), o4)
+
+assert.deepStrictEqual(deepClone([1, {a: {b: 2}}, {c: 3}, 4]), [1, {a: {b: 2}}, {c: 3}, 4])

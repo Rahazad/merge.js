@@ -1,6 +1,6 @@
 {
 	"name": "@graphix/merge",
-	"version": "0.0.6",
+	"version": "0.1.0",
 	"description": "Merge javascript objects (`{}`) DEEPLY (recursively). It also checks the equality of input objects.",
 	"keywords": [
 		"javascript",
