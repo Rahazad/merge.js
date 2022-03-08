@@ -1,6 +1,6 @@
 {
 	"name": "@graphix/merge",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Merge javascript objects (`{}`) DEEPLY (recursively). It also checks the equality of input objects.",
 	"keywords": [
 		"javascript",
@@ -42,9 +42,7 @@
 	},
 	"license": "MIT",
 	"author": "S. M. Mir-Ismaili <s.m.mirismaili@gmail.com>",
-	"type": "module",
 	"main": "src/main.js",
-	"source": "src/index.js",
 	"files": [
 		"src"
 	],
